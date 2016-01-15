@@ -85,13 +85,21 @@ sub move_file($) {
 
 		if (is_serie($fileu)) {	
 			if (! "$DRYRUN") { 
-				move($realpath, '/root/video/serie/dja_vu/');
+				my $dest="/root/video/series/dja_vu/";
+				my $ret=system("mv", "$realpath", "$dest");
+				if ($ret != 0) {
+					say "error, can't move $realpath to $dest"
+				}
 			} else {
-				say "move $realpath to /root/video/serie/dja_vu";
+				say "move $realpath to /root/video/series/dja_vu";
 			}
 		} else {
 			if (! "$DRYRUN") {
-				move($realpath, '/root/video/dja_vu/');
+				my $dest="/root/video/dja_vu/";
+				my $ret=system("mv", "$realpath", "$dest");
+				if ($ret != 0) {
+					say "error, can't move $realpath to $dest"
+				}
 			} else {
 				say "move $realpath to /root/video/dja_vu";
 			}
